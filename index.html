@@ -18,7 +18,7 @@
         <div class="container">
             <div id="logo">
                 <a class="navbar-brand" href="#">
-                    <img src="static/image/logo.png" alt="Logo" style="height: 100px;">
+                    <img src="static/image/logo.png" alt="Logo" id="logo">
                 </a>
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -44,7 +44,7 @@
 
 
     <div class="carousel-container">
-        <div id="carouselExampleAutoplaying" class="carousel slide carosello" data-bs-ride="carousel">
+        <div id="carouselExampleAutoplaying" class="carousel carousel-dark slide carosello" data-bs-ride="carousel">
             <div class="car ousel-inner">
                 <div class="carousel-item active">
                     <div class="itemcarosello">
@@ -52,7 +52,9 @@
                             <h3>Discalculia</h3>
                             <p>Disturbo specifico che riguarda una difficoltà nella manipolazione dei numeri, i calcoli
                                 veloci a mente e il recupero dei risultati nelle diverse operazioni aritmetiche.</p>
-                            <button class="btn btn-warning">Vai</button>
+                            <div>
+                                <button class="btn btn-warning">Scopri il progetto</button>
+                            </div>
                         </div>
                         <img src="static/image/lavagnabrutta.jpg" class="d-block w-50 mx-auto immagini" alt="...">
                     </div>
@@ -64,7 +66,9 @@
                             <p>Disturbo specifico della lettura che si manifesta con una difficoltà nella lettura
                                 accurata e fluente di un testo in termini di velocità e correttezza. Questa difficoltà,
                                 a causa della fatica nella lettura, si riflette spesso nella comprensione del testo.</p>
-                            <button class="btn btn-warning">Vai</button>
+                            <div>
+                                <button class="btn btn-warning">Scopri il progetto</button>
+                            </div>
                         </div>
                         <img src="static/image/lettura.jpg" class="d-block w-50 mx-auto immagini" alt="...">
                     </div>
@@ -75,7 +79,9 @@
                             <h3>Disgrafia</h3>
                             <p>Disturbo specifico della grafia che riguarda la componente motoria della scrittura per
                                 cui scrivere risulta difficoltoso e poco veloce. </p>
-                            <button class="btn btn-warning">Vai</button>
+                            <div>
+                                <button class="btn btn-warning">Scopri il progetto</button>
+                            </div>
                         </div>
                         <img src="static/image/penna.jpg" class="d-block w-50 mx-auto immagini" alt="...">
                     </div>
@@ -140,14 +146,23 @@
 
     <footer>
         <div class="container text-center">
-            <p class="fw-bold">SemplificaMente</p>
-            <p>Sblocca il tuo potenziale</p>
+            <a class="navbar-brand" href="#">
+                <img src="static/image/logo.png" id="logo2">
+            </a>
+            <div class="footersocial">
+                <img class="social" src="static/image/instagram.png">
+                <img class="social" src="static/image/facebook.png">
+                <img class="social" src="static/image/youtube.png">
+            </div>
+            <p id="slogan">Sblocca il tuo potenziale</p>
             <div>
                 <a href="#" class="text-white mx-2"><i class="bi bi-facebook"></i></a>
                 <a href="#" class="text-white mx-2"><i class="bi bi-instagram"></i></a>
             </div>
-            <p class="small mt-3">Progetto realizzato durante l'evento Hackathon per aiutare ragazzi con problemi di
-                apprendimento.</p>
+            <p class="small mt-3">semplificaMente è un progetto realizzato da alcuni studenti della sede Panetti
+                durante
+                l’evento Hackathon
+                per aiutare ragazzi con problemi dell’apprendimento</p>
         </div>
     </footer>
 
