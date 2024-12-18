@@ -1,36 +1,5 @@
-#navigazione {
-    position: relative;
-    right: 400px;
-}
+@import "nav.css";
 
-#accessi {
-    position: relative;
-    right: 250px;
-}
-
-#logo {
-    position: relative;
-    left: 30px;
-    height: 150px;
-    width: 150px;
-}
-
-.hero-section {
-    background-image: url('https://via.placeholder.com/1920x1080');
-    background-size: cover;
-    background-position: center;
-    color: #fff;
-    height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.hero-overlay {
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    border-radius: 8px;
-}
 
 .feature-box {
     border: 1px solid #ddd;
@@ -106,6 +75,7 @@ footer {
 
 .testo {
     height: 130px;
+    color: black;
 }
 
 .imm {
@@ -147,4 +117,12 @@ li {
     color: gray;
     font-weight: bold;
     font-size: 50px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.titaree {
+    color: black;
 }

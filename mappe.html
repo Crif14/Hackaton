@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/mappe.css" rel="stylesheet">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <div id="logo">
+                <a class="navbar-brand" href="#">
+                    <img src="static/image/logo.png" alt="Logo" id="logo">
+                </a>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navigazione">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Chi siamo?</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Tutor</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Proposte didattiche</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="accessi">
+            <a class="btn btn-outline-warning mx-2" href="#">Accedi</a>
+            <a class="btn btn-warning" href="#">Login</a>
+        </div>
+
+    </nav>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-sm-3" id="giallo">
+                <div>
+                    <a class="navbar-brand" href="#">
+                        <img src="static/image/logo.png" alt="Logo" id="logo2">
+                    </a>
+                    <h3 id="titolo">Cronologia appunti</h3>
+                    <a class="navbar-brand" href="#">
+                        <img src="static/image/plus symbol.png" alt="plus symbol" id="plus">
+                    </a>
+                    <input type="button" value="Nuova mappa" class="bottone">
+                </div>
+                <div>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="chat-container">
+                    <h1 id="titcar">Carica un file PDF</h1>
+                    <div>
+                        <form action="/upload" method="post" id="formpdf" enctype="multipart/form-data">
+                            <label for="pdfFile">Seleziona un file PDF:</label>
+                            <input type="file" id="file" name="pdfFile" accept="application/pdf">
+                            <button type="submit">Carica</button>
+                        </form>
+
+                    </div>
+                    <div class="centro" id="mermaid-diagram"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        let diagram = document.querySelector("#mermaid-diagram")
+        // Funzione per estrarre testo dal PDF
+        function extractTextFromPDF(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = async function (e) {
+                    const loadingTask = pdfjsLib.getDocument(new Uint8Array(e.target.result));
+                    const pdf = await loadingTask.promise;
+                    let textContent = '';
+
+                    // Estrazione del testo da tutte le pagine del PDF
+                    for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                        const page = await pdf.getPage(pageNum);
+                        const text = await page.getTextContent();
+                        textContent += text.items.map(item => item.str).join(' ') + '\n';
+                    }
+
+                    resolve(textContent);
+                };
+                reader.onerror = reject;
+                reader.readAsArrayBuffer(file);
+            });
+        }
+
+        // Funzione per generare il codice Mermaid in base al testo del PDF
+        function generateMermaidCode(text) {
+            const lines = text.split('\n');
+            let mermaidCode = 'graph TD;\n';
+            lines.forEach((line, index) => {
+                if (line.trim() !== '') {
+                    const cleanLine = line.trim().replace(/\s+/g, ' '); // Rimuove gli spazi extra
+                    mermaidCode += `    ${index}[${cleanLine}];\n`;
+                    if (index > 0) {
+                        mermaidCode += `    ${index - 1} --> ${index};\n`;
+                    }
+                }
+            });
+            return mermaidCode;
+        }
+
+        // Funzione per visualizzare il diagramma Mermaid
+        async function generateDiagramFromPDF(event) {
+            event.preventDefault(); // Evita che il form venga inviato
+
+            const file = document.querySelector("#file").files[0];
+            if (!file) return; // Se non è stato selezionato alcun file, esci dalla funzione
+
+            const text = await extractTextFromPDF(file);
+            let mermaidCode = generateMermaidCode(text);
+
+            // Mostra il codice Mermaid nel browser per debug
+            console.log(mermaidCode);
+
+            // Inizializza Mermaid (se non è già stato fatto prima)
+            mermaid.initialize({ startOnLoad: true });
+
+
+            // Inserisci il codice Mermaid nel contenitore
+            diagram.innerHTML = mermaidCode;
+
+            // Inizializza e renderizza il diagramma
+            mermaid.contentLoaded();
+        }
+
+        // Aggiungi evento al form per caricare il PDF e generare il diagramma
+        document.querySelector("#formpdf").addEventListener("submit", generateDiagramFromPDF);
+    </script>
+</body>
+
+</html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,35 +9,67 @@
     <title>Document</title>
 
 </head>
+
 <body>
-    <div class="container text-center">
-        <div class="row">
-          <div class="col-sm-3" id="giallo">
-            <div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <div id="logo">
                 <a class="navbar-brand" href="#">
                     <img src="static/image/logo.png" alt="Logo" id="logo">
                 </a>
-                <h3 id="titolo">Cronologia appunti</h3>
-                <a class="navbar-brand" href="#">
-                    <img src="static/image/plus symbol.png" alt="plus symbol" id="plus">
-                </a>
-                <input type="button" value="Nuovo testo" class="bottone">
             </div>
-            <div>
-          </div>
-          </div>
-          <div class="col-sm-9">
-            <div class="chat-container d-flex flex-column justify-content-end" style="height: 90vh; background-color: #ffffff; border-left: 1px solid #ddd;">
-                <div class="messages flex-grow-1" style="overflow-y: auto; padding: 10px;">
-                </div>
-                <div class="input-container d-flex" style="padding: 10px; border-top: 1px solid #ddd;">
-                    <textarea placeholder="Inserisci il testo..." style="flex: 1; height: 50px; border: 1px solid #ccc; border-radius: 5px; padding: 10px; resize: none;"></textarea>
-                    <button style="margin-left: 10px; padding: 10px 20px; background-color: orange; color: white; border: none; border-radius: 5px;">Invia</button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navigazione">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Chi siamo?</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Tutor</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Proposte didattiche</a></li>
+                    </ul>
                 </div>
             </div>
-          </div>
+        </div>
+        <div id="accessi">
+            <a class="btn btn-outline-warning mx-2" href="#">Accedi</a>
+            <a class="btn btn-warning" href="#">Login</a>
+        </div>
+
+    </nav>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-sm-3" id="giallo">
+                <div>
+                    <a class="navbar-brand" href="#">
+                        <img src="static/image/logo.png" alt="Logo" id="logo2">
+                    </a>
+                    <h3 id="titolo">Cronologia appunti</h3>
+                    <a class="navbar-brand" href="#">
+                        <img src="static/image/plus symbol.png" alt="plus symbol" id="plus">
+                    </a>
+                    <input type="button" value="Nuovo testo" class="bottone">
+                </div>
+                <div>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="chat-container d-flex flex-column justify-content-end"
+                    style="height: 800px; background-color: #ffffff; border-left: 1px solid #ddd;">
+                    <div class="messages flex-grow-1" style="overflow-y: auto; padding: 10px;">
+                    </div>
+                    <div class="input-container d-flex" style="padding: 10px; border-top: 1px solid #ddd;">
+                        <textarea id="testo" placeholder="Inserisci il testo..."
+                            style="flex: 1; height: 50px; border: 1px solid #ccc; border-radius: 5px; padding: 10px; resize: none;"></textarea>
+                        <button id="bottonetesto"
+                            style="margin-left: 10px; padding: 10px 20px; background-color: orange; color: white; border: none; border-radius: 5px;">Invia</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-      
+    <script src="static/js/tts.js"></script>
 </body>
+
 </html>

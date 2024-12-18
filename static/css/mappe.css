@@ -2,6 +2,7 @@
 
 #giallo {
     background-color: #FFC011;
+    height: 800px;
 }
 
 #logo2 {
@@ -27,4 +28,21 @@ h3 {
     font-size: 20px;
     font-weight: 500;
     position: absolute;
+}
+
+#titcar {
+    color: #FFC011;
+}
+
+.centro {
+    height: 710px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.errore {
+    color: red;
+    font-size: 50px;
 }
